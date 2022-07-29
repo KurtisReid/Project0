@@ -15,23 +15,32 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee registerEmployee(Employee employee) {
-        if ()
+        if (employee.getName().length() == 0)
+        {
+            throw new RuntimeException("i need a name");
+        }
 
-        return null;
+        Employee savedEmployee = this.employeeDAO.createEmployee(employee);
+
+        return savedEmployee;
     }
 
     @Override
     public Employee retriveRemployeeByID(int id) {
-        return null;
+        return this.employeeDAO.getEmployeeByID(id);
     }
 
     @Override
     public boolean deleteEmployee(int id) {
-        return false;
+        return this.employeeDAO.deleteEmployeeByID(id);
     }
 
     @Override
     public Employee modifyEmployee(Employee employee) {
-        return null;
+        if (employee.getName().length() == 0)
+        {
+            throw new RuntimeException("i need a name");
+        }
+        return this.employeeDAO.updateEmployee(employee);
     }
 }
