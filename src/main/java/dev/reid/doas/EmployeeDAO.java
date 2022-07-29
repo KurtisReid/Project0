@@ -1,8 +1,7 @@
-package dev.reid.App.doas;
+package dev.reid.doas;
 
-import dev.reid.App.entity.Employee;
+import dev.reid.entity.Employee;
 
-import java.util.List;
 import java.util.Set;
 
 public interface EmployeeDAO {

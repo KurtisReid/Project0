@@ -1,8 +1,8 @@
 package dev.reid.doaTests;
 
-import dev.reid.App.doas.EmployeeDAO;
-import dev.reid.App.doas.EmployeeDAOLocal;
-import dev.reid.App.entity.Employee;
+import dev.reid.doas.EmployeeDAO;
+import dev.reid.doas.EmployeeDAOLocal;
+import dev.reid.entity.Employee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

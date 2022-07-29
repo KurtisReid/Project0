@@ -1,4 +1,4 @@
-package dev.reid.App.entity;
+package dev.reid.entity;
 
 public class Employee {
     private int id;

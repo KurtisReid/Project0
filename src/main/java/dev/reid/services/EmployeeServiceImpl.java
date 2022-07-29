@@ -1,7 +1,7 @@
-package dev.reid.App.services;
+package dev.reid.services;
 
-import dev.reid.App.doas.EmployeeDAO;
-import dev.reid.App.entity.Employee;
+import dev.reid.doas.EmployeeDAO;
+import dev.reid.entity.Employee;
 
 public class EmployeeServiceImpl implements EmployeeService{
 

@@ -1,6 +1,6 @@
-package dev.reid.App.services;
+package dev.reid.services;
 
-import dev.reid.App.entity.Employee;
+import dev.reid.entity.Employee;
 
 public interface EmployeeService {
 
