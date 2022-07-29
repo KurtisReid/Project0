@@ -2,9 +2,7 @@ package dev.reid.App.doas;
 
 import dev.reid.App.entity.Employee;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EmployeeDAOLocal implements EmployeeDAO{
 
@@ -25,8 +23,9 @@ public class EmployeeDAOLocal implements EmployeeDAO{
     }
 
     @Override
-    public List<Employee> getListOfEmployees() {
-        return null;
+    public Set<Employee> getListOfEmployees() {
+        Set<Employee> employees = new HashSet<Employee>(this.employeeTable.values());
+        return employees;
     }
 
     @Override
