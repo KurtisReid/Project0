@@ -1,10 +1,7 @@
-package dev.reid.entity.App;
+package dev.reid.App;
 
 import dev.reid.doas.EmployeeDAOLocal;
-import dev.reid.handlers.CreateEmployeeHandler;
-import dev.reid.handlers.DeleteEmployeeHandler;
-import dev.reid.handlers.GetEmployeeByIDHandler;
-import dev.reid.handlers.UpdateEmployeeByIDHandler;
+import dev.reid.handlers.*;
 import dev.reid.services.EmployeeService;
 import dev.reid.services.EmployeeServiceImpl;
 import io.javalin.Javalin;
@@ -35,11 +32,12 @@ public class App {
         DeleteEmployeeHandler deleteEmployeeHandler = new DeleteEmployeeHandler();
         GetEmployeeByIDHandler getEmployeeByIDHandler = new GetEmployeeByIDHandler();
         UpdateEmployeeByIDHandler updateEmployeeByIDHandler = new UpdateEmployeeByIDHandler();
+        GetAllEmployeesHandler getAllEmployeesHandler = new GetAllEmployeesHandler();
 
 
 
         app.post("/employees", createEmployeeHandler);
-        //app.get("/employees", null);
+        app.get("/employees", getAllEmployeesHandler);
         app.get("/employees/{id}", getEmployeeByIDHandler);
         app.put("/employees/{id}", updateEmployeeByIDHandler);
         app.delete("/employees/{id}", deleteEmployeeHandler);

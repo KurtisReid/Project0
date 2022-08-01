@@ -1,6 +1,6 @@
 package dev.reid.handlers;
 
-import dev.reid.entity.App.App;
+import dev.reid.App.App;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;

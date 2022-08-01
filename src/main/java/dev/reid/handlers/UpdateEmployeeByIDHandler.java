@@ -1,7 +1,7 @@
 package dev.reid.handlers;
 
 import com.google.gson.Gson;
-import dev.reid.entity.App.App;
+import dev.reid.App.App;
 import dev.reid.entity.Employee;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
