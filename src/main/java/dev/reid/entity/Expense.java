@@ -6,7 +6,7 @@ public class Expense {
 
     private String desc;
 
-    private String type;//make an enum
+    private Type type;//make an enum
 
 
     /*
