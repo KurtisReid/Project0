@@ -1,9 +1,12 @@
 package dev.reid.App;
 
 import dev.reid.doas.EmployeeDAOLocal;
+import dev.reid.doas.ExpenseDOALocal;
 import dev.reid.handlers.*;
 import dev.reid.services.EmployeeService;
 import dev.reid.services.EmployeeServiceImpl;
+import dev.reid.services.ExpenseService;
+import dev.reid.services.ExpenseServiceImpl;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
@@ -24,6 +27,7 @@ Expenses routes
 public class App {
 
     public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOLocal());
+    public static ExpenseService expenseService = new ExpenseServiceImpl();
 
 
     public static void main(String[] args) {

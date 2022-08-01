@@ -4,11 +4,21 @@ public class Expense {
     private int id;
     private double expenseCost;
 
-    private String status;
+    private String desc;
+
+    private String type;//make an enum
+
+
+    /*
+
+    enums
+     */
+
+    private Status status;
 
     private int employeeIssuer;
 
-    public Expense(int id, double expenseCost, String status, int employeeIssuer) {
+    public Expense(int id, double expenseCost, Status status, int employeeIssuer) {
         this.id = id;
         this.expenseCost = expenseCost;
         this.status = status;
@@ -31,11 +41,11 @@ public class Expense {
         this.expenseCost = expenseCost;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -2,6 +2,7 @@ package dev.reid.doas;
 
 import dev.reid.entity.Employee;
 import dev.reid.entity.Expense;
+import dev.reid.entity.Status;
 
 import java.sql.SQLOutput;
 import java.util.HashMap;
@@ -50,7 +51,7 @@ public class ExpenseDOALocal implements ExpenseDOA{
     }
 
     @Override
-    public boolean deleteExpenseByID(int id) {
+    public String deleteExpenseByID(int id) {
         /*
         DELETE /expenses/19
 returns a 404 if expense not found
@@ -60,23 +61,25 @@ Once approved or denied they CANNOT be deleted or edited
 
         */
         Expense expense = expenseTable.get(id);
+
         //check if book == null
         if (expenseTable.get(id).equals(null))
         {
             // throw some error
             System.out.println("id not found");
-            return false;
+
+            return "404";
         }
 
-        if (expense.getStatus() == "APPROVED" || expense.getStatus() == "DENIED")
+        if (expense.getStatus() == Status.APPROVED || expense.getStatus() == Status.DENIED)
         {
             System.out.println("Cannot delete Expense status");
-            return false;
+            return "422";
         }
 
         expense = expenseTable.remove(id);
 
-        return true;
+        return "200";
     }
 
     @Override
@@ -86,11 +89,12 @@ Once approved or denied they CANNOT be deleted or edited
     }
 
     @Override
-    public Expense updateExpenseStatus(int id, String status) {
-        status = status.toUpperCase();
+    public Expense updateExpenseStatus(int id, Status status) {
+
         /*
 
         Once approved or denied they CANNOT be deleted or edited
+        // assuming that the id is unique
          */
         Expense expense = expenseTable.get(id);
         //check if book == null
@@ -101,13 +105,13 @@ Once approved or denied they CANNOT be deleted or edited
             return null;
         }
 
-        if (expense.getStatus() == "APPROVED" || expense.getStatus() == "DENIED")
+        if (expense.getStatus() == Status.APPROVED || expense.getStatus() == Status.DENIED)
         {
             System.out.println("Cannot edit Expense status");
             return null;
         }
 
-        if (status == "APPROVED" || status == "DENIED" || status == "PENDING")
+        if (status == Status.APPROVED || status == Status.DENIED || status == Status.PENDING)
         {
             expense.setStatus(status);
             return expense;
