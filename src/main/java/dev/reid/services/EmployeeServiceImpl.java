@@ -3,6 +3,9 @@ package dev.reid.services;
 import dev.reid.doas.EmployeeDAO;
 import dev.reid.entity.Employee;
 
+import java.util.Map;
+import java.util.Set;
+
 public class EmployeeServiceImpl implements EmployeeService{
 
     private EmployeeDAO employeeDAO;
@@ -42,5 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService{
             throw new RuntimeException("i need a name");
         }
         return this.employeeDAO.updateEmployee(employee);
+    }
+    @Override
+    public Set<Employee> returnAllEmployees()
+    {
+        return this.employeeDAO.getListOfEmployees();
     }
 }

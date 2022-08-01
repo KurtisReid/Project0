@@ -25,6 +25,7 @@ public class App {
 
     public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOLocal());
 
+
     public static void main(String[] args) {
         Javalin app = Javalin.create();
         CreateEmployeeHandler createEmployeeHandler = new CreateEmployeeHandler();
