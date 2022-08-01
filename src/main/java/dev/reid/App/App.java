@@ -39,6 +39,16 @@ public class App {
         UpdateEmployeeByIDHandler updateEmployeeByIDHandler = new UpdateEmployeeByIDHandler();
         GetAllEmployeesHandler getAllEmployeesHandler = new GetAllEmployeesHandler();
 
+        CreateExpenseHandler createExpenseHandler = new CreateExpenseHandler();
+        DeleteExpenseHandler deleteExpenseHandler = new DeleteExpenseHandler();
+        GetAllExpensesHandler getAllExpensesHandler = new GetAllExpensesHandler();
+        GetExpenseByExpenseIDHandler getExpenseByExpenseIDHandler = new GetExpenseByExpenseIDHandler();
+        GetExpenseByStatusHandler getExpenseByStatusHandler = new GetExpenseByStatusHandler();
+        GetExpensesByEmployeeIDHandler getExpensesByEmployeeIDHandler = new GetExpensesByEmployeeIDHandler();
+        UpdateExpenseStatusHandler updateExpenseStatusHandler = new UpdateExpenseStatusHandler();
+
+
+
 
 
         app.post("/employees", createEmployeeHandler);
@@ -46,6 +56,14 @@ public class App {
         app.get("/employees/{id}", getEmployeeByIDHandler);
         app.put("/employees/{id}", updateEmployeeByIDHandler);
         app.delete("/employees/{id}", deleteEmployeeHandler);
+
+        app.get("/expenses", getAllExpensesHandler);
+        app.get("/expenses/{id}", getExpenseByExpenseIDHandler);
+        app.put("/expenses/{id}", createExpenseHandler);
+        app.patch("/expenses/{id}/{status}", updateExpenseStatusHandler);
+        app.delete("/expenses/{id}", deleteExpenseHandler);
+        app.get("/employees/{id}/expenses", getExpensesByEmployeeIDHandler);
+        app.get("/expenses?status={status}", getExpenseByStatusHandler);
 
         app.start();
 
