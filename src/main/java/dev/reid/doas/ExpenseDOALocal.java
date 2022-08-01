@@ -27,8 +27,20 @@ public class ExpenseDOALocal implements ExpenseDOA{
     }
 
     @Override
-    public Expense getExpenseByEmployee(int employeeId) {
-        return null;
+    public Map<Integer,Expense> getExpenseByEmployee(int employeeId) {
+
+        Map<Integer,Expense> returnMap = new HashMap();
+
+        for (Map.Entry<Integer,Expense> entry : expenseTable.entrySet())
+        {
+            Expense expense = entry.getValue();
+            if (expense.getEmployeeIssuer() == employeeId)
+            {
+                // assuming one to one rtealtionship
+                returnMap.put(expense.getId(), expense);
+            }
+        }
+        return returnMap;
     }
 
     @Override
@@ -47,7 +59,24 @@ Once approved or denied they CANNOT be deleted or edited
 
 
         */
-        return false;
+        Expense expense = expenseTable.get(id);
+        //check if book == null
+        if (expenseTable.get(id).equals(null))
+        {
+            // throw some error
+            System.out.println("id not found");
+            return false;
+        }
+
+        if (expense.getStatus() == "APPROVED" || expense.getStatus() == "DENIED")
+        {
+            System.out.println("Cannot delete Expense status");
+            return false;
+        }
+
+        expense = expenseTable.remove(id);
+
+        return true;
     }
 
     @Override
