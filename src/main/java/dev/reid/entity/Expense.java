@@ -8,9 +8,52 @@ public class Expense {
 
     private int employeeIssuer;
 
-    public Expense(int id, double expenseCost, String status) {
+    public Expense(int id, double expenseCost, String status, int employeeIssuer) {
         this.id = id;
         this.expenseCost = expenseCost;
         this.status = status;
+        this.employeeIssuer = employeeIssuer;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getExpenseCost() {
+        return expenseCost;
+    }
+
+    public void setExpenseCost(double expenseCost) {
+        this.expenseCost = expenseCost;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getEmployeeIssuer() {
+        return employeeIssuer;
+    }
+
+    public void setEmployeeIssuer(int employeeIssuer) {
+        this.employeeIssuer = employeeIssuer;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + id +
+                ", expenseCost=" + expenseCost +
+                ", status='" + status + '\'' +
+                ", employeeIssuer=" + employeeIssuer +
+                '}';
     }
 }
