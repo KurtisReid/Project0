@@ -40,6 +40,10 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee modifyEmployee(Employee employee) {
+        System.out.println(employee.getId());
+        //find employee by id
+        employee.setName(this.employeeDAO.getEmployeeByID(employee.getId()).getName());
+        System.out.println(employee.getName());
         if (employee.getName().length() == 0)
         {
             throw new RuntimeException("i need a name");

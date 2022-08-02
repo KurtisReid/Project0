@@ -14,7 +14,7 @@ public class UpdateEmployeeByIDHandler implements Handler {
         Gson gson = new Gson();
 
         Employee employee = gson.fromJson(employeeJson, Employee.class);
-        App.employeeService.modifyEmployee(employee);
+        //App.employeeService.modifyEmployee(employee);
         Employee updatedEmployee = App.employeeService.modifyEmployee(employee);
 
         String json = gson.toJson(updatedEmployee);

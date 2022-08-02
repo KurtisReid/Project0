@@ -7,13 +7,6 @@ public class Expense {
     private String desc;
 
     private Type type;//make an enum
-
-
-    /*
-
-    enums
-     */
-
     private Status status;
 
     private int employeeIssuer;
