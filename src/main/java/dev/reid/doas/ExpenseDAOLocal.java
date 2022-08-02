@@ -1,21 +1,20 @@
 package dev.reid.doas;
 
-import dev.reid.entity.Employee;
 import dev.reid.entity.Expense;
 import dev.reid.entity.Status;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
-public class ExpenseDOALocal implements ExpenseDOA{
+public class ExpenseDAOLocal implements ExpenseDAO {
 
     private Map<Integer,Expense> expenseTable = new HashMap();
     private int idMaker = 1;
     @Override
     public Expense createExpense(Expense expense) {
+
         expense.setId(idMaker++);
+
         expenseTable.put(expense.getId(), expense);
         return expense;
     }
@@ -79,7 +78,7 @@ Once approved or denied they CANNOT be deleted or edited
 
         expense = expenseTable.remove(id);
 
-        return "200";
+        return "202";
     }
 
     @Override

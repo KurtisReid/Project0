@@ -13,7 +13,7 @@ public class GetExpensesByEmployeeIDHandler implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
         int employeeId = Integer.parseInt(ctx.pathParam("id"));
-
+        System.out.println("hello");
         Map<Integer, Expense> expense = App.expenseService.getExpenseByEmployee(employeeId);
 
         Gson gson = new Gson();

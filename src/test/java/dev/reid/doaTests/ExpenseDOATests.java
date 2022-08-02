@@ -1,18 +1,16 @@
 package dev.reid.doaTests;
 
-import dev.reid.doas.ExpenseDOA;
-import dev.reid.doas.ExpenseDOALocal;
-import dev.reid.entity.Employee;
+import dev.reid.doas.ExpenseDAO;
+import dev.reid.doas.ExpenseDAOLocal;
 import dev.reid.entity.Expense;
 import dev.reid.entity.Status;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
-import java.util.Set;
 
 public class ExpenseDOATests {
-    static ExpenseDOA expenseDOA = new ExpenseDOALocal();
+    static ExpenseDAO expenseDOA = new ExpenseDAOLocal();
 
     @Test
     void create_expense_test()

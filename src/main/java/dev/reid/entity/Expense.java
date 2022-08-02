@@ -17,6 +17,13 @@ public class Expense {
         this.status = status;
         this.employeeIssuer = employeeIssuer;
     }
+    /*
+    {
+        "id":1,
+        "expenseCost":2.0,
+        "status":"PENDING",
+        "employerIssue":1
+    }*/
 
     public int getId() {
         return id;

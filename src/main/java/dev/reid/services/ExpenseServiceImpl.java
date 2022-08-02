@@ -1,23 +1,26 @@
 package dev.reid.services;
 
-import dev.reid.doas.ExpenseDOA;
+import dev.reid.doas.ExpenseDAO;
+import dev.reid.doas.ExpenseDAOLocal;
 import dev.reid.entity.Expense;
 import dev.reid.entity.Status;
 
 import java.util.Map;
-import java.util.Set;
 
 public class ExpenseServiceImpl implements ExpenseService{
 
-    private ExpenseDOA expenseDOA;
+    private ExpenseDAO expenseDOA = new ExpenseDAOLocal();
     @Override
     public Expense registerExpense(Expense expense) {
-        return this.expenseDOA.createExpense(expense);
+        //System.out.println(expense);
+        Expense exp = this.expenseDOA.createExpense(expense);
+        return exp;
 
     }
 
     @Override
     public Expense retriveExpenseByID(int id) {
+
         return this.expenseDOA.getExpenseByID(id);
 
     }

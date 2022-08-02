@@ -14,10 +14,12 @@ import java.util.Map;
 public class GetExpenseByStatusHandler implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
-
-        String s1 = String.format(ctx.pathParam("status"));
+        System.out.println("hello its me");
+        String s1 = String.format(ctx.queryParam("status"));
         Gson gson = new Gson();
         Map<Integer, Expense> expense = new HashMap();
+        System.out.println("hello its me");
+        System.out.println(s1);
         if (s1.toUpperCase() == Status.APPROVED.name())
         {
             expense = App.expenseService.getExpensesByStatus(Status.APPROVED);

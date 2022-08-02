@@ -1,13 +1,11 @@
 package dev.reid.doas;
 
-import dev.reid.entity.Employee;
 import dev.reid.entity.Expense;
 import dev.reid.entity.Status;
 
 import java.util.Map;
-import java.util.Set;
 
-public interface ExpenseDOA {
+public interface ExpenseDAO {
 
     Expense createExpense(Expense expense);//post POST /expenses
     Map<Integer,Expense> getExpensesByStatus(String status);//get

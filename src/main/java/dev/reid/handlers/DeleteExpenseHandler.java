@@ -11,6 +11,7 @@ public class DeleteExpenseHandler implements Handler {
     public void handle(@NotNull Context ctx) throws Exception {
         int id = Integer.parseInt(ctx.pathParam("id"));
         String result = App.expenseService.deleteExpense(id);
+        System.out.println(result);
         if (result == "202")
         {
             ctx.result("The expense has been deleted");

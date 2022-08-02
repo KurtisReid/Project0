@@ -1,14 +1,12 @@
 package dev.reid.App;
 
 import dev.reid.doas.EmployeeDAOLocal;
-import dev.reid.doas.ExpenseDOALocal;
 import dev.reid.handlers.*;
 import dev.reid.services.EmployeeService;
 import dev.reid.services.EmployeeServiceImpl;
 import dev.reid.services.ExpenseService;
 import dev.reid.services.ExpenseServiceImpl;
 import io.javalin.Javalin;
-import io.javalin.http.Handler;
 
 /*
 POST /employees
@@ -57,13 +55,15 @@ public class App {
         app.put("/employees/{id}", updateEmployeeByIDHandler);
         app.delete("/employees/{id}", deleteEmployeeHandler);
 
-        app.get("/expenses", getAllExpensesHandler);
-        app.get("/expenses/{id}", getExpenseByExpenseIDHandler);
-        app.put("/expenses/{id}", createExpenseHandler);
+        app.get("/expenses?status={status}", getExpenseByStatusHandler);//not working
+
+        app.get("/expenses", getAllExpensesHandler);//work
+        app.get("/expenses/{id}", getExpenseByExpenseIDHandler);//work
+        app.put("/expenses/{id}", createExpenseHandler);//work
         app.patch("/expenses/{id}/{status}", updateExpenseStatusHandler);
-        app.delete("/expenses/{id}", deleteExpenseHandler);
-        app.get("/employees/{id}/expenses", getExpensesByEmployeeIDHandler);
-        app.get("/expenses?status={status}", getExpenseByStatusHandler);
+        app.delete("/expenses/{id}", deleteExpenseHandler);//works
+        app.get("/employees/{id}/expenses", getExpensesByEmployeeIDHandler);//works
+
 
         app.start();
 

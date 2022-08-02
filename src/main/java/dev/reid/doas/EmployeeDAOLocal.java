@@ -30,7 +30,10 @@ public class EmployeeDAOLocal implements EmployeeDAO{
 
     @Override
     public Employee updateEmployee(Employee employee) {
+        //System.out.println(employeeTable.get(employee.getId()));
         employeeTable.put(employee.getId(), employee);
+        //System.out.println(employeeTable.get(employee.getId()));
+        //System.out.println(employee);
         return employee;
     }
 
