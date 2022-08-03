@@ -2,6 +2,7 @@ package dev.reid.doas;
 
 import dev.reid.entity.Employee;
 
+import java.util.List;
 import java.util.Set;
 
 public interface EmployeeDAO {
@@ -10,7 +11,7 @@ public interface EmployeeDAO {
 
     Employee getEmployeeByID(int id); //GET
 
-   Set<Employee> getListOfEmployees(); // GET with id
+   List<Employee> getListOfEmployees(); // GET with id
 
    Employee updateEmployee(Employee employee); // Put
 

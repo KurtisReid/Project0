@@ -23,8 +23,8 @@ public class EmployeeDAOLocal implements EmployeeDAO{
     }
 
     @Override
-    public Set<Employee> getListOfEmployees() {
-        Set<Employee> employees = new HashSet<Employee>(this.employeeTable.values());
+    public List<Employee> getListOfEmployees() {
+        List<Employee> employees = new ArrayList(this.employeeTable.values());
         return employees;
     }
 

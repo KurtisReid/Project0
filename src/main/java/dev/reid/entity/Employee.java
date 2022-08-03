@@ -9,6 +9,10 @@ public class Employee {
         Name = name;
     }
 
+    public Employee() {
+
+    }
+
     public int getId() {
         return id;
     }
