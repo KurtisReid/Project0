@@ -12,11 +12,12 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ExpenseDOATests {
     static ExpenseDAO expenseDOA = new ExpenseDAOPostgres();
-
+/*
     @BeforeAll //this method will exicute before any tests
     static void setup()
     {
@@ -83,15 +84,49 @@ public class ExpenseDOATests {
         Expense savedExpense = expenseDOA.createExpense(expense);
         Expense expensev4 = new Expense(4,12.0,Status.PENDING,1,"gay", Type.TRAVEL);
         Expense savedExpensev4 = expenseDOA.createExpense(expensev4);
+
+
+
         Expense expensev2 = new Expense(2,10.0,Status.DENIED,1,"gay", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
+        Expense expensev5 = new Expense(2,10.0,Status.DENIED,1,"gay", Type.TRAVEL);
+        Expense savedExpensev5 = expenseDOA.createExpense(expensev5);
+
         Expense expensev3 = new Expense(3,10.0,Status.APPROVED,1,"gay", Type.TRAVEL);
-        Expense savedExpensev3 = expenseDOA.createExpense(expensev2);
+        Expense savedExpensev3 = expenseDOA.createExpense(expensev3);
+        Expense expensev6 = new Expense(3,10.0,Status.APPROVED,1,"gay", Type.TRAVEL);
+        Expense savedExpensev6 = expenseDOA.createExpense(expensev6);
+
+
         Assertions.assertEquals(expense.getStatus(),Status.PENDING);
         Assertions.assertEquals(expensev2.getStatus(),Status.DENIED);
         Assertions.assertEquals(expensev3.getStatus(),Status.APPROVED);
-        String result = expenseDOA.getExpensesByStatus("PENDING").toString();
-        System.out.println(result);
+
+
+        Map<Integer, Expense> expenseMapP = expenseDOA.getExpensesByStatus("PENDING");
+        Map<Integer, Expense> expenseMapD = expenseDOA.getExpensesByStatus("DENIED");
+        Map<Integer, Expense> expenseMapA = expenseDOA.getExpensesByStatus("APPROVED");
+
+        Assertions.assertEquals(expenseMapP.get(expense.getId()).getStatus(), Status.PENDING);
+        Assertions.assertNotEquals(expenseMapP.get(expense.getId()).getStatus(), Status.DENIED);
+        Assertions.assertNotEquals(expenseMapP.get(expense.getId()).getStatus(), Status.APPROVED);
+
+
+
+        Assertions.assertNotEquals(expenseMapD.get(expensev2.getId()).getStatus(), Status.PENDING);
+        Assertions.assertEquals(expenseMapD.get(expensev2.getId()).getStatus(), Status.DENIED);
+        Assertions.assertNotEquals(expenseMapD.get(expensev2.getId()).getStatus(), Status.APPROVED);
+
+        Assertions.assertNotEquals(expenseMapA.get(expensev6.getId()).getStatus(), Status.PENDING);
+        Assertions.assertNotEquals(expenseMapA.get(expensev6.getId()).getStatus(), Status.DENIED);
+        Assertions.assertEquals(expenseMapA.get(expensev6.getId()).getStatus(), Status.APPROVED);
+
+
+        //System.out.println("PENDING: "+ expenseMapP);
+        //System.out.println("DENIED: "+ expenseMapD);
+        //System.out.println("Approved: " + expenseMapA);
+
+
 
     }
 
@@ -155,6 +190,7 @@ public class ExpenseDOATests {
 
     }
 
+    /*
     @AfterAll
     static void teardown()
     {
@@ -167,7 +203,7 @@ public class ExpenseDOATests {
             e.printStackTrace();
         }
     }
-
+*/
 
 
 

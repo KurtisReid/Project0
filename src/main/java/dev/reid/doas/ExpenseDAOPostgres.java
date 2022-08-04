@@ -80,10 +80,10 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
                 Expense expense = new Expense();
                 expense.setStatus(rs.getString("status"));
 
-                System.out.println("Pre iff");
+                //System.out.println("Pre iff");
                 if (rs.getString("status").toString().toUpperCase().equals(status.toUpperCase().toString()))
                 {
-                    System.out.println("In iff");
+                    //System.out.println("In iff");
                     expense.setExpenseCost(rs.getDouble("expense_cost"));
                     expense.setStatus(rs.getString("status"));
                     expense.setEmployeeIssuer(rs.getInt("employee_issuer"));
@@ -91,7 +91,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
                     expense.setId(rs.getInt("id"));
                     expense.setType(rs.getString("type"));
                     expenseMap.put(expense.getId(), expense);
-                    System.out.println("Hello" + expense);
+                    //System.out.println("Hello" + rs.getString("status"));
                 }
             }
             return expenseMap;

@@ -98,7 +98,11 @@ public class Expense {
         }
         if (status.toUpperCase() == Status.DENIED.name())
         {
+
             this.status = Status.DENIED;
+        }
+        else {
+            this.status = Status.valueOf(status);
         }
 
 
