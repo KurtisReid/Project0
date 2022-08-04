@@ -39,6 +39,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             preparedStatement.setString(2, expense.getDesc());
             preparedStatement.setString(3, expense.getType().toString());
             preparedStatement.setString(4, expense.getStatus().toString());
+            System.out.println(expense.getStatus().toString());
             preparedStatement.setInt(5, expense.getEmployeeIssuer());
 
             preparedStatement.execute();
@@ -62,7 +63,50 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
 
     @Override
     public Map<Integer, Expense> getExpensesByStatus(String status) {
-        return null;
+
+        try(Connection connection = ConnectionUtil.createConnection())
+        {
+
+            //int id, double expenseCost, Status status, int employeeIssuer, String desc
+            String sql = "select * from expenses where status = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,status);
+
+            ResultSet rs = ps.executeQuery();
+            Map<Integer, Expense> expenseMap = new HashMap();
+
+            while(rs.next())
+            {
+                Expense expense = new Expense();
+                expense.setStatus(rs.getString("status"));
+
+                System.out.println("Pre iff");
+                if (rs.getString("status").toString().toUpperCase().equals(status.toUpperCase().toString()))
+                {
+                    System.out.println("In iff");
+                    expense.setExpenseCost(rs.getDouble("expense_cost"));
+                    expense.setStatus(rs.getString("status"));
+                    expense.setEmployeeIssuer(rs.getInt("employee_issuer"));
+                    expense.setDesc(rs.getString("description"));
+                    expense.setId(rs.getInt("id"));
+                    expense.setType(rs.getString("type"));
+                    expenseMap.put(expense.getId(), expense);
+                    System.out.println("Hello" + expense);
+                }
+            }
+            return expenseMap;
+
+
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+        //return null;
+
+
+        //return null;
     }
 
     @Override

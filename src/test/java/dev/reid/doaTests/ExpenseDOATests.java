@@ -81,6 +81,8 @@ public class ExpenseDOATests {
     {
         Expense expense = new Expense(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
+        Expense expensev4 = new Expense(4,12.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense savedExpensev4 = expenseDOA.createExpense(expensev4);
         Expense expensev2 = new Expense(2,10.0,Status.DENIED,1,"gay", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
         Expense expensev3 = new Expense(3,10.0,Status.APPROVED,1,"gay", Type.TRAVEL);
@@ -88,6 +90,8 @@ public class ExpenseDOATests {
         Assertions.assertEquals(expense.getStatus(),Status.PENDING);
         Assertions.assertEquals(expensev2.getStatus(),Status.DENIED);
         Assertions.assertEquals(expensev3.getStatus(),Status.APPROVED);
+        String result = expenseDOA.getExpensesByStatus("PENDING").toString();
+        System.out.println(result);
 
     }
 
@@ -95,15 +99,17 @@ public class ExpenseDOATests {
     @Order(4)
     void get_expenses_by_employee_id_test()
     {
-        Expense expense = new Expense(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expense = new Expense(1,11.0,Status.PENDING,1,"gay", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
-        Expense expensev2 = new Expense(2,10.0,Status.PENDING,2,"gay", Type.TRAVEL);
+        Expense expensev2 = new Expense(2,11.0,Status.PENDING,2,"gay", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
-        Expense expensev3 = new Expense(3,10.0,Status.PENDING,3,"gay", Type.TRAVEL);
+        Expense expensev3 = new Expense(3,11.0,Status.PENDING,3,"gay", Type.TRAVEL);
         Expense savedExpensev3 = expenseDOA.createExpense(expensev2);
         Assertions.assertEquals(expense.getEmployeeIssuer(),1);
         Assertions.assertEquals(expensev2.getEmployeeIssuer(),2);
         Assertions.assertEquals(expensev3.getEmployeeIssuer(),3);
+        String result = expenseDOA.getExpenseByID(1).toString();
+        System.out.println(result);
 
     }
 
@@ -128,6 +134,8 @@ public class ExpenseDOATests {
 
 
     }
+
+
 
     @Test
     @Order(6)
