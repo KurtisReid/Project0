@@ -13,7 +13,7 @@ public interface ExpenseDAO {
     Map<Integer,Expense> getListOfExpenses();//get GET /expenses
     String deleteExpenseByID(int id);//delete
     Expense getExpenseByID(int id);//get
-    Expense updateExpenseStatus(int id, Status status);// PATCH /expenses/20/deny
+    Expense updateExpenseStatus(int id, String status);// PATCH /expenses/20/deny
 
 
 

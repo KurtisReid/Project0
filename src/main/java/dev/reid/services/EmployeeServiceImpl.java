@@ -3,6 +3,7 @@ package dev.reid.services;
 import dev.reid.doas.EmployeeDAO;
 import dev.reid.entity.Employee;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         return this.employeeDAO.updateEmployee(employee);
     }
     @Override
-    public Set<Employee> returnAllEmployees()
+    public List<Employee> returnAllEmployees()
     {
         return this.employeeDAO.getListOfEmployees();
     }

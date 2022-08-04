@@ -88,7 +88,7 @@ Once approved or denied they CANNOT be deleted or edited
     }
 
     @Override
-    public Expense updateExpenseStatus(int id, Status status) {
+    public Expense updateExpenseStatus(int id, String status) {
 
         /*
 
@@ -110,7 +110,7 @@ Once approved or denied they CANNOT be deleted or edited
             return null;
         }
 
-        if (status == Status.APPROVED || status == Status.DENIED || status == Status.PENDING)
+        if (status.toUpperCase() == Status.APPROVED.name() || status.toUpperCase() == Status.DENIED.name() || status.toUpperCase() == Status.PENDING.name())
         {
             expense.setStatus(status);
             return expense;

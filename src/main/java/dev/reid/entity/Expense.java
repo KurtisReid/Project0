@@ -11,11 +11,17 @@ public class Expense {
 
     private int employeeIssuer;
 
-    public Expense(int id, double expenseCost, Status status, int employeeIssuer) {
+    public Expense(int id, double expenseCost, Status status, int employeeIssuer, String desc, Type type) {
         this.id = id;
         this.expenseCost = expenseCost;
         this.status = status;
         this.employeeIssuer = employeeIssuer;
+        this.desc = desc;
+        this.type = type;
+    }
+
+    public Expense() {
+
     }
     /*
     {
@@ -24,6 +30,39 @@ public class Expense {
         "status":"PENDING",
         "employerIssue":1
     }*/
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+
+        if (type.toUpperCase() == Type.FOOD.name())
+        {
+            this.type = Type.FOOD;
+
+        }
+        if (type.toUpperCase() == Type.LODGING.name())
+        {
+            this.type = Type.LODGING;
+
+        }
+        if (type.toUpperCase() == Type.TRAVEL.name())
+        {
+            this.type = Type.TRAVEL;
+
+        }
+
+
+    }
 
     public int getId() {
         return id;
@@ -42,11 +81,27 @@ public class Expense {
     }
 
     public Status getStatus() {
+
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(String status) {
+        if (status.toUpperCase() == Status.APPROVED.name())
+        {
+            this.status = Status.APPROVED;
+
+        }
+        if (status.toUpperCase() == Status.PENDING.name())
+        {
+            this.status = Status.PENDING;
+
+        }
+        if (status.toUpperCase() == Status.DENIED.name())
+        {
+            this.status = Status.DENIED;
+        }
+
+
     }
 
     public int getEmployeeIssuer() {

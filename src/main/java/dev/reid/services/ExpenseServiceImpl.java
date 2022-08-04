@@ -2,6 +2,7 @@ package dev.reid.services;
 
 import dev.reid.doas.ExpenseDAO;
 import dev.reid.doas.ExpenseDAOLocal;
+import dev.reid.doas.ExpenseDAOPostgres;
 import dev.reid.entity.Expense;
 import dev.reid.entity.Status;
 
@@ -10,6 +11,11 @@ import java.util.Map;
 public class ExpenseServiceImpl implements ExpenseService{
 
     private ExpenseDAO expenseDOA = new ExpenseDAOLocal();
+
+    public ExpenseServiceImpl(ExpenseDAOPostgres expenseDAOPostgres) {
+
+    }
+
     @Override
     public Expense registerExpense(Expense expense) {
         //System.out.println(expense);
@@ -33,7 +39,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     @Override
     public Expense modifyExpense(Expense expense) {
-        return this.expenseDOA.updateExpenseStatus(expense.getId(), expense.getStatus());
+        return this.expenseDOA.updateExpenseStatus(expense.getId(), expense.getStatus().toString());
 
     }
 

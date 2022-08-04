@@ -3,6 +3,7 @@ package dev.reid.services;
 import dev.reid.entity.Employee;
 import dev.reid.entity.Expense;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public interface EmployeeService {
 
     Employee modifyEmployee(Employee employee);
 
-    Set<Employee> returnAllEmployees();
+    List<Employee> returnAllEmployees();
 
 
 }

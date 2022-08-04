@@ -2,11 +2,12 @@ package dev.reid.entity;
 
 public class Employee {
     private int id;
-    private String Name;
+    private String name;
+
 
     public Employee(int id, String name) {
         this.id = id;
-        Name = name;
+        name = name;
     }
 
     public Employee() {
@@ -22,18 +23,18 @@ public class Employee {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", Name='" + name + '\'' +
                 '}';
     }
 }

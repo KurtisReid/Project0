@@ -2,14 +2,16 @@ package dev.reid.doaTests;
 
 import dev.reid.doas.EmployeeDAO;
 import dev.reid.doas.EmployeeDAOLocal;
+import dev.reid.doas.EmployeeDAOPostgres;
 import dev.reid.entity.Employee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Set;
 
 public class EmployeeDOATests {
-    static EmployeeDAO employeeDAO = new EmployeeDAOLocal();
+    static EmployeeDAO employeeDAO = new EmployeeDAOPostgres();
 
     @Test
     void create_employee_test()
@@ -48,7 +50,7 @@ public class EmployeeDOATests {
 
         employeeDAO.updateEmployee(employeev2);
 
-        Set<Employee> employeeList = employeeDAO.getListOfEmployees();
+        List<Employee> employeeList = employeeDAO.getListOfEmployees();
         System.out.println(employeeList);
 
         Assertions.assertEquals(true, employeeList.contains(employee));
