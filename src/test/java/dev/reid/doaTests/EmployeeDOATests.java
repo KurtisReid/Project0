@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public class EmployeeDOATests {
-    static EmployeeDAO employeeDAO = new EmployeeDAOPostgres();
+    static EmployeeDAO employeeDAO = new EmployeeDAOLocal();
 
     @Test
     void create_employee_test()
@@ -26,6 +26,9 @@ public class EmployeeDOATests {
     @Test
     void get_employee_by_id_test()
     {
+        Employee employee1 = new Employee(1,"Matt");
+        System.out.println("matt: " + employee1.getName());
+        Employee savedEmployee = employeeDAO.createEmployee(employee1);
         Employee employee = employeeDAO.getEmployeeByID(1);
         Assertions.assertEquals("Matt", employee.getName());
 

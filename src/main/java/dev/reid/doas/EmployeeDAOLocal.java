@@ -12,13 +12,16 @@ public class EmployeeDAOLocal implements EmployeeDAO{
 
     @Override
     public Employee createEmployee(Employee employee) {
+        System.out.println(employee.getName());
         employee.setId(idMaker++);
         employeeTable.put(employee.getId(), employee);
+        System.out.println(employeeTable.values());
         return employee;
     }
 
     @Override
     public Employee getEmployeeByID(int id) {
+        System.out.println(employeeTable.values());
         return employeeTable.get(id);
     }
 

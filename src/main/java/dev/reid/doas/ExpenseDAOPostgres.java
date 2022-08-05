@@ -268,18 +268,24 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             ps.setInt(1,id);
 
             ResultSet rs = ps.executeQuery();
+
             rs.next();
 
                 Expense expense = new Expense();
                 expense.setId(rs.getInt("id"));
+                System.out.println("out of iff " + rs.getInt("id"));
                 if (expense.getId() == id)
                 {
+                    System.out.println("inside iff ");
                     expense.setExpenseCost(rs.getDouble("expense_cost"));
                     //expense.setStatus(rs.getString("status"));
                     expense.setEmployeeIssuer(rs.getInt("employee_issuer"));
                     expense.setDesc(rs.getString("description"));
                     return expense;
                 }
+
+
+
 
 
 
