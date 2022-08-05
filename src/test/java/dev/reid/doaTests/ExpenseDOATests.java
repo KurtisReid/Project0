@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class ExpenseDOATests {
     static ExpenseDAO expenseDOA = new ExpenseDAOPostgres();
-/*
+
     @BeforeAll //this method will exicute before any tests
     static void setup()
     {
@@ -136,16 +136,19 @@ public class ExpenseDOATests {
     {
         Expense expense = new Expense(1,11.0,Status.PENDING,1,"Day", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
-        Expense expensev2 = new Expense(2,11.0,Status.PENDING,2,"bay", Type.TRAVEL);
+        Expense expensev2 = new Expense(2,196999,Status.PENDING,2,"If I match, it works", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
-        Expense expensev3 = new Expense(3,11.0,Status.PENDING,3,"say", Type.TRAVEL);
+        Expense expensev3 = new Expense(3,45,Status.PENDING,3,"say", Type.TRAVEL);
         Expense savedExpensev3 = expenseDOA.createExpense(expensev2);
-        Assertions.assertEquals(expense.getEmployeeIssuer(),1);
-        Assertions.assertEquals(expensev2.getEmployeeIssuer(),2);
-        Assertions.assertEquals(expensev3.getEmployeeIssuer(),3);
+        //Assertions.assertEquals(expense.getEmployeeIssuer(),1);
+        //Assertions.assertEquals(expensev2.getEmployeeIssuer(),2);
+        //Assertions.assertEquals(expensev3.getEmployeeIssuer(),3);
+        System.out.println(expenseDOA.getListOfExpenses());
+        System.out.println("wORK:" + expenseDOA.getExpenseByEmployee(2).get(savedExpensev2.getId()));
+        Assertions.assertEquals(expensev2.getDesc(), expenseDOA.getExpenseByEmployee(2).get(savedExpensev2.getId()).getDesc());
 
-        String result = expenseDOA.getExpenseByID(1).toString();
-        System.out.println(result);
+        //String result = expenseDOA.getExpenseByID(3).toString();
+        //System.out.println(result);
 
     }
 
@@ -153,18 +156,22 @@ public class ExpenseDOATests {
     @Order(5)
     void get_all_expenses_test()
     {
+        Map<Integer, Expense> expenseList = expenseDOA.getListOfExpenses();
+        int size = expenseList.size();
+
         Expense expense = new Expense(1,10.0,Status.PENDING,1,"sv", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
         Expense expensev2 = new Expense(2,11.0,Status.PENDING,1,"grw", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
         Expense expensev3 = new Expense(3,12.0,Status.PENDING,1,"rged", Type.TRAVEL);
         Expense savedExpensev3 = expenseDOA.createExpense(expensev3);
+        Map<Integer, Expense> expenseList1 = expenseDOA.getListOfExpenses();
 
 
-        Map<Integer, Expense> expenseList = expenseDOA.getListOfExpenses();
-        System.out.println(expenseList);
 
-        Assertions.assertEquals(3, expenseList.size());
+        System.out.println(expenseList.size());
+
+        Assertions.assertEquals(size+3, expenseList1.size());
         //Assertions.assertEquals(true, expenseList.containsValue(expensev2));
         //Assertions.assertEquals(true, expenseList.containsValue(expensev3));
 
@@ -192,7 +199,7 @@ public class ExpenseDOATests {
 
     }
 
-    /*
+
     @AfterAll
     static void teardown()
     {
@@ -205,7 +212,7 @@ public class ExpenseDOATests {
             e.printStackTrace();
         }
     }
-*/
+
 
 
 

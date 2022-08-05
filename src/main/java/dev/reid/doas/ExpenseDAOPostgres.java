@@ -118,7 +118,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             //int id, double expenseCost, Status status, int employeeIssuer, String desc
             String sql = "select * from expenses where employee_issuer = ?";//CHANGE THIS
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(4,employeeId);
+            ps.setInt(1,employeeId);
 
             ResultSet rs = ps.executeQuery();
             while (rs.next())
@@ -167,10 +167,10 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             int tempCount = 0;
 
 
-//(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+
             while (rs.next())
             {
-                System.out.println(tempCount);
+                //System.out.println(tempCount);
 
                 Expense expense = new Expense();
                 expense.setId(rs.getInt("id"));
@@ -180,7 +180,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
                 expense.setDesc(rs.getString("description"));
                 expense.setType(rs.getString("type"));
                 expenseList.put(expense.getId(), expense);
-                tempCount++;
+                //tempCount++;
 
             }
             return expenseList;
@@ -268,8 +268,11 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             ps.setInt(1,id);
 
             ResultSet rs = ps.executeQuery();
+            if (!rs.next())
+            {
+                throw new RuntimeException();
+            }
 
-            rs.next();
             Expense expense = new Expense();
             expense.setId(rs.getInt("id"));
             System.out.println("out of iff " + rs.getInt("id"));
