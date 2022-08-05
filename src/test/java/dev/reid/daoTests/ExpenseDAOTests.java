@@ -1,7 +1,6 @@
-package dev.reid.doaTests;
+package dev.reid.daoTests;
 
 import dev.reid.doas.ExpenseDAO;
-import dev.reid.doas.ExpenseDAOLocal;
 import dev.reid.doas.ExpenseDAOPostgres;
 import dev.reid.entity.Expense;
 import dev.reid.entity.Status;
@@ -12,10 +11,9 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.Map;
 
-public class ExpenseDOATests {
+public class ExpenseDAOTests {
     static ExpenseDAO expenseDOA = new ExpenseDAOPostgres();
 
     @BeforeAll //this method will exicute before any tests

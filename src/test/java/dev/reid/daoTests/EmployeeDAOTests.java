@@ -1,7 +1,6 @@
-package dev.reid.doaTests;
+package dev.reid.daoTests;
 
 import dev.reid.doas.EmployeeDAO;
-import dev.reid.doas.EmployeeDAOLocal;
 import dev.reid.doas.EmployeeDAOPostgres;
 import dev.reid.entity.Employee;
 import dev.reid.utils.ConnectionUtil;
@@ -13,9 +12,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import java.util.Set;
 
-public class EmployeeDOATests {
+public class EmployeeDAOTests {
     static EmployeeDAO employeeDAO = new EmployeeDAOPostgres(); // NOTE: EmployeeDAOPostgres not yet working
 
     @Test
@@ -82,7 +80,7 @@ public class EmployeeDOATests {
         boolean result = employeeDAO.deleteEmployeeByID(1);
         Assertions.assertTrue(result);
     }
-
+/*
     @AfterAll
     static void teardown()
     {
@@ -95,5 +93,7 @@ public class EmployeeDOATests {
             e.printStackTrace();
         }
     }
+
+ */
 
 }
