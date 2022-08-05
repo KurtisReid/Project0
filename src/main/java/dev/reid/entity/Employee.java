@@ -27,7 +27,7 @@ public class Employee {
     }
 
     public void setName(String name) {
-        name = name;
+        this.name = name;
     }
 
     @Override

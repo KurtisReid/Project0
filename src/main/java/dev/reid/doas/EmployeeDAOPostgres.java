@@ -14,11 +14,11 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
         //try with resources syntax. It automatically closes the connection at the end of the try or catch
         try(Connection conn = ConnectionUtil.createConnection())
         {
-            //insert into book values (default, 'The stranger', 'albert camus', 0);
+
             String sql = "Insert into employee values (default, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, employee.getId());
-            preparedStatement.setString(2, employee.getName());
+            //preparedStatement.setInt(1, employee.getId());
+            preparedStatement.setString(1, employee.getName());
 
 
             preparedStatement.execute();
@@ -44,12 +44,18 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
     public Employee getEmployeeByID(int id) {
         try(Connection connection = ConnectionUtil.createConnection())
         {
+
+
             String sql = "select * from employee where id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1,id);
 
             ResultSet rs = ps.executeQuery();
-            rs.next();
+            System.out.println(rs);
+            if (!rs.next())
+            {
+                throw new RuntimeException();
+            }
 
             Employee employee = new Employee();
             employee.setId(rs.getInt("id"));
@@ -100,11 +106,12 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
     public Employee updateEmployee(Employee employee) {
         try(Connection conn = ConnectionUtil.createConnection()) {
             //update book set title = 'the stranger things', author = 'Albert kamus', return_date = 1 where id = 1;
-            String sql = "update employee set id = ?, name = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            String sql = "update employee set name = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1, employee.getId());
-            preparedStatement.setString(2, employee.getName());
+
+            //preparedStatement.setInt(1, employee.getId());
+            preparedStatement.setString(1, employee.getName());
 
             preparedStatement.executeUpdate();
             return employee;
