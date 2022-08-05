@@ -4,14 +4,19 @@ import dev.reid.doas.EmployeeDAO;
 import dev.reid.doas.EmployeeDAOLocal;
 import dev.reid.doas.EmployeeDAOPostgres;
 import dev.reid.entity.Employee;
+import dev.reid.utils.ConnectionUtil;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Set;
 
 public class EmployeeDOATests {
-    static EmployeeDAO employeeDAO = new EmployeeDAOLocal(); // NOTE: EmployeeDAOPostgres not yet working
+    static EmployeeDAO employeeDAO = new EmployeeDAOPostgres(); // NOTE: EmployeeDAOPostgres not yet working
 
     @Test
     void create_employee_test()
@@ -38,35 +43,23 @@ public class EmployeeDOATests {
     @Test
     void update_employee_test()
     {
-        Employee employeev2 = new Employee(1, "John");
-        Employee employee1 = employeeDAO.updateEmployee(employeev2);
-        Employee employee = employeeDAO.getEmployeeByID(employee1.getId());
+        Employee employeeOriginal = new Employee(1, "Im special, but not 6557 times repeating in a table special. Why am i like this?"); // creating new employee
+        employeeOriginal = employeeDAO.createEmployee(employeeOriginal); //putting employee in table
+        System.out.println(employeeDAO.getListOfEmployees());
+        System.out.println(employeeOriginal.getId());
+        Employee employeeNew = new Employee(employeeOriginal.getId(), "John"); //creating employee to update employeeOriginal
+        Employee employee1 = employeeDAO.updateEmployee(employeeNew); // updating employee
+        System.out.println(employeeDAO.getListOfEmployees());
+
+        Employee employee = employeeDAO.getEmployeeByID(employee1.getId());// getting employee from table to check name
+
         Assertions.assertEquals("John", employee.getName());
     }
 
     @Test
     void get_all_employees()
     {
-        /*
-        Map<Integer, Expense> expenseList = expenseDOA.getListOfExpenses();
-        int size = expenseList.size();
 
-        Expense expense = new Expense(1,10.0,Status.PENDING,1,"sv", Type.TRAVEL);
-        Expense savedExpense = expenseDOA.createExpense(expense);
-        Expense expensev2 = new Expense(2,11.0,Status.PENDING,1,"grw", Type.TRAVEL);
-        Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
-        Expense expensev3 = new Expense(3,12.0,Status.PENDING,1,"rged", Type.TRAVEL);
-        Expense savedExpensev3 = expenseDOA.createExpense(expensev3);
-        Map<Integer, Expense> expenseList1 = expenseDOA.getListOfExpenses();
-
-
-
-        System.out.println(expenseList.size());
-
-        Assertions.assertEquals(size+3, expenseList1.size());
-        //Assertions.assertEquals(true, expenseList.containsValue(expensev2));
-        //Assertions.assertEquals(true, expenseList.containsValue(expensev3));
-         */
         List<Employee> preEmployeeList = employeeDAO.getListOfEmployees();
         int size = preEmployeeList.size();
 
@@ -88,6 +81,19 @@ public class EmployeeDOATests {
     {
         boolean result = employeeDAO.deleteEmployeeByID(1);
         Assertions.assertTrue(result);
+    }
+
+    @AfterAll
+    static void teardown()
+    {
+        try(Connection connection = ConnectionUtil.createConnection())
+        {
+            String sql = "drop table expenses";
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

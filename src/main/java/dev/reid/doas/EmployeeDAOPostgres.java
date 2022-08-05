@@ -106,11 +106,11 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
     public Employee updateEmployee(Employee employee) {
         try(Connection conn = ConnectionUtil.createConnection()) {
             //update book set title = 'the stranger things', author = 'Albert kamus', return_date = 1 where id = 1;
-            String sql = "update employee set name = ?";
+            String sql = "update employee set name = ? where id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 
-            //preparedStatement.setInt(1, employee.getId());
+            preparedStatement.setInt(2, employee.getId());
             preparedStatement.setString(1, employee.getName());
 
             preparedStatement.executeUpdate();
