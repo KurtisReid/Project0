@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public class EmployeeDOATests {
-    static EmployeeDAO employeeDAO = new EmployeeDAOLocal();
+    static EmployeeDAO employeeDAO = new EmployeeDAOLocal(); // NOTE: EmployeeDAOPostgres not yet working
 
     @Test
     void create_employee_test()

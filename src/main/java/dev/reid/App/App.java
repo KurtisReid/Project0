@@ -3,6 +3,7 @@ package dev.reid.App;
 import com.google.gson.Gson;
 import dev.reid.doas.EmployeeDAOLocal;
 import dev.reid.doas.EmployeeDAOPostgres;
+import dev.reid.doas.ExpenseDAOLocal;
 import dev.reid.doas.ExpenseDAOPostgres;
 import dev.reid.entity.Expense;
 import dev.reid.entity.Status;
@@ -33,7 +34,7 @@ Expenses routes
  */
 public class App {
 
-    public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOPostgres());
+    public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOLocal());
     public static ExpenseService expenseService = new ExpenseServiceImpl(new ExpenseDAOPostgres());
 
 

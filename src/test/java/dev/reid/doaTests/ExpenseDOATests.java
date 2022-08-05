@@ -54,11 +54,11 @@ public class ExpenseDOATests {
     @Order(1)
     void create_expense_test()
     {
-        Expense expense = new Expense(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expense = new Expense(1,10.0,Status.PENDING,1,"May", Type.TRAVEL);
         Expense savedExpensev1 = expenseDOA.createExpense(expense);
-        Expense expensev2 = new Expense(2,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expensev2 = new Expense(2,10.0,Status.PENDING,1,"May", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
-        Expense expensev3 = new Expense(3,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expensev3 = new Expense(3,10.0,Status.PENDING,1,"May", Type.TRAVEL);
 
         Assertions.assertNotEquals(0, savedExpensev1.getId());
 
@@ -69,10 +69,10 @@ public class ExpenseDOATests {
     @Order(2)
     void get_expense_by_id_test()
     {
-        Expense expense = new Expense(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expense = new Expense(0,10.0,Status.PENDING,1,"May", Type.TRAVEL);
 
         Expense savedExpense = expenseDOA.createExpense(expense);
-        Assertions.assertEquals(1,1);
+        Assertions.assertNotEquals(0,savedExpense.getId());
 
     }
 
@@ -80,21 +80,21 @@ public class ExpenseDOATests {
     @Order(3)
     void get_expenses_by_status_test()
     {
-        Expense expense = new Expense(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expense = new Expense(1,10.0,Status.PENDING,1,"May", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
-        Expense expensev4 = new Expense(4,12.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expensev4 = new Expense(4,12.0,Status.PENDING,1,"Say", Type.TRAVEL);
         Expense savedExpensev4 = expenseDOA.createExpense(expensev4);
 
 
 
-        Expense expensev2 = new Expense(2,10.0,Status.DENIED,1,"gay", Type.TRAVEL);
+        Expense expensev2 = new Expense(2,10.0,Status.DENIED,1,"May", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
-        Expense expensev5 = new Expense(2,10.0,Status.DENIED,1,"gay", Type.TRAVEL);
+        Expense expensev5 = new Expense(2,10.0,Status.DENIED,1,"May", Type.TRAVEL);
         Expense savedExpensev5 = expenseDOA.createExpense(expensev5);
 
-        Expense expensev3 = new Expense(3,10.0,Status.APPROVED,1,"gay", Type.TRAVEL);
+        Expense expensev3 = new Expense(3,10.0,Status.APPROVED,1,"May", Type.TRAVEL);
         Expense savedExpensev3 = expenseDOA.createExpense(expensev3);
-        Expense expensev6 = new Expense(3,10.0,Status.APPROVED,1,"gay", Type.TRAVEL);
+        Expense expensev6 = new Expense(3,10.0,Status.APPROVED,1,"May", Type.TRAVEL);
         Expense savedExpensev6 = expenseDOA.createExpense(expensev6);
 
 
@@ -134,15 +134,16 @@ public class ExpenseDOATests {
     @Order(4)
     void get_expenses_by_employee_id_test()
     {
-        Expense expense = new Expense(1,11.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expense = new Expense(1,11.0,Status.PENDING,1,"Day", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
-        Expense expensev2 = new Expense(2,11.0,Status.PENDING,2,"gay", Type.TRAVEL);
+        Expense expensev2 = new Expense(2,11.0,Status.PENDING,2,"bay", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
-        Expense expensev3 = new Expense(3,11.0,Status.PENDING,3,"gay", Type.TRAVEL);
+        Expense expensev3 = new Expense(3,11.0,Status.PENDING,3,"say", Type.TRAVEL);
         Expense savedExpensev3 = expenseDOA.createExpense(expensev2);
         Assertions.assertEquals(expense.getEmployeeIssuer(),1);
         Assertions.assertEquals(expensev2.getEmployeeIssuer(),2);
         Assertions.assertEquals(expensev3.getEmployeeIssuer(),3);
+
         String result = expenseDOA.getExpenseByID(1).toString();
         System.out.println(result);
 
@@ -152,9 +153,9 @@ public class ExpenseDOATests {
     @Order(5)
     void get_all_expenses_test()
     {
-        Expense expense = new Expense(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expense = new Expense(1,10.0,Status.PENDING,1,"sv", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
-        Expense expensev2 = new Expense(2,11.0,Status.PENDING,1,"str8", Type.TRAVEL);
+        Expense expensev2 = new Expense(2,11.0,Status.PENDING,1,"grw", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
         Expense expensev3 = new Expense(3,12.0,Status.PENDING,1,"rged", Type.TRAVEL);
         Expense savedExpensev3 = expenseDOA.createExpense(expensev3);
@@ -176,14 +177,15 @@ public class ExpenseDOATests {
     @Order(6)
     void delete_expense_test()
     {
-        Expense expense = new Expense(1,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expense = new Expense(1,10.0,Status.PENDING,1,"sv", Type.TRAVEL);
         Expense savedExpense = expenseDOA.createExpense(expense);
-        Expense expensev2 = new Expense(2,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expensev2 = new Expense(2,10.0,Status.PENDING,1,"vsd", Type.TRAVEL);
         Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
-        Expense expensev3 = new Expense(3,10.0,Status.PENDING,1,"gay", Type.TRAVEL);
+        Expense expensev3 = new Expense(3,10.0,Status.PENDING,1,"vsd", Type.TRAVEL);
         Expense savedExpensev3 = expenseDOA.createExpense(expensev2);
 
         String result = expenseDOA.deleteExpenseByID(1);
+        //Assertions.assertEquals(false, expenseDOA.getExpenseByID(1));
         Assertions.assertEquals("200", result);
 
 
