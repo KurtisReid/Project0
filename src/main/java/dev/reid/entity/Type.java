@@ -1,5 +1,5 @@
 package dev.reid.entity;
 
 public enum Type {
-    FOOD, LODGING, TRAVEL
+    FOOD, LODGING, TRAVEL, OTHER
 }

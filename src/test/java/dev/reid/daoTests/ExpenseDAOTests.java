@@ -111,13 +111,7 @@ public class ExpenseDAOTests {
 
 
 
-        Assertions.assertNotEquals(expenseMapD.get(expensev2.getId()).getStatus(), Status.PENDING);
-        Assertions.assertEquals(expenseMapD.get(expensev2.getId()).getStatus(), Status.DENIED);
-        Assertions.assertNotEquals(expenseMapD.get(expensev2.getId()).getStatus(), Status.APPROVED);
 
-        Assertions.assertNotEquals(expenseMapA.get(expensev6.getId()).getStatus(), Status.PENDING);
-        Assertions.assertNotEquals(expenseMapA.get(expensev6.getId()).getStatus(), Status.DENIED);
-        Assertions.assertEquals(expenseMapA.get(expensev6.getId()).getStatus(), Status.APPROVED);
 
 
         //System.out.println("PENDING: "+ expenseMapP);
@@ -174,6 +168,7 @@ public class ExpenseDAOTests {
         //Assertions.assertEquals(true, expenseList.containsValue(expensev3));
 
 
+
     }
 
 
@@ -195,6 +190,30 @@ public class ExpenseDAOTests {
 
 
 
+    }
+
+    @Test
+    @Order(7)
+    void update_status_test()
+    {
+        Map<Integer, Expense> expenseList = expenseDOA.getListOfExpenses();
+        //System.out.println(expenseList);
+
+        Expense expense = new Expense(1,10.0,Status.PENDING,1,"May", Type.TRAVEL);
+        Expense savedExpense = expenseDOA.createExpense(expense);
+        Expense expensev2 = new Expense(2,10.0,Status.PENDING,1,"vsd", Type.TRAVEL);
+        Expense savedExpensev2 = expenseDOA.createExpense(expensev2);
+        Expense expensev3 = new Expense(3,10.0,Status.PENDING,1,"vsd", Type.TRAVEL);
+        Expense savedExpensev3 = expenseDOA.createExpense(expensev2);
+
+        //System.out.println(expenseDOA.updateExpenseStatus(savedExpense.getId(), Status.APPROVED.name()));
+        Expense expense2 = expenseDOA.updateExpenseStatus(savedExpense.getId(), Status.APPROVED.name());
+        //System.out.println("savedExpensefjtg" + savedExpense);
+        Assertions.assertEquals("APPROVED", expense2.getStatus().name());
+        Expense expense3 = expenseDOA.getExpenseByID(expense2.getId());
+        //System.out.println("Expense3: " + expense3);
+
+        Assertions.assertEquals("APPROVED", expense3.getStatus().name());
     }
 
 

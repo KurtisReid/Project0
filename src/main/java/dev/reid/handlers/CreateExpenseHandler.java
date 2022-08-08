@@ -15,7 +15,7 @@ public class CreateExpenseHandler implements Handler {
         String json = ctx.body();
         Gson gson = new Gson();
         Expense expense = gson.fromJson(json, Expense.class);
-
+        System.out.println(expense);
         Expense registeredExpense = App.expenseService.registerExpense(expense);
 
 

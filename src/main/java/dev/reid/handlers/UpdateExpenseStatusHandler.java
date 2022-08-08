@@ -13,6 +13,7 @@ public class UpdateExpenseStatusHandler implements Handler {
     public void handle(@NotNull Context ctx) throws Exception {
         String expenseJson = ctx.body();
         Gson gson = new Gson();
+        System.out.println("UpdateExpenseStatusHandler");
 
         Expense expense = gson.fromJson(expenseJson, Expense.class);
         Expense updatedExpense = App.expenseService.modifyExpense(expense);

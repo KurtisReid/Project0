@@ -22,10 +22,10 @@ public class UpdateEmployeeByIDHandler implements Handler {
         employee2.setId(id);
         //App.employeeService.modifyEmployee(employee);
         //System.out.println(employee.getName());
-        System.out.println(employee);
-        System.out.println(employee2);
+       // System.out.println(employee);
+        //System.out.println(employee2);
         Employee updatedEmployee = App.employeeService.modifyEmployee(employee2);
-        System.out.println(updatedEmployee);
+        //System.out.println(updatedEmployee);
         String json = gson.toJson(updatedEmployee);
         if (employee != null)
         {

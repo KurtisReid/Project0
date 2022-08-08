@@ -42,6 +42,7 @@ public class Expense {
     }
 
     public Type getType() {
+        System.out.println("get type:" + type);
         return type;
     }
 
@@ -52,15 +53,19 @@ public class Expense {
             this.type = Type.FOOD;
 
         }
-        if (type.toUpperCase() == Type.LODGING.name())
+        else if (type.toUpperCase() == Type.LODGING.name())
         {
             this.type = Type.LODGING;
 
         }
-        if (type.toUpperCase() == Type.TRAVEL.name())
+        else if (type.toUpperCase() == Type.TRAVEL.name())
         {
             this.type = Type.TRAVEL;
 
+        }
+        else
+        {
+            this.type = Type.OTHER;
         }
 
 
@@ -88,23 +93,30 @@ public class Expense {
     }
 
     public void setStatus(String status) {
-        if (status.toUpperCase() == Status.APPROVED.name())
+
+
+        Status s = Status.valueOf(status);
+        //System.out.println(status);
+        if (s == Status.APPROVED)
         {
+            System.out.println("this.status = Status.APPROVED;");
             this.status = Status.APPROVED;
 
         }
-        if (status.toUpperCase() == Status.PENDING.name())
+        else if (s == Status.PENDING)
         {
+            System.out.println("this.status = Status.PENDING;");
             this.status = Status.PENDING;
 
         }
-        if (status.toUpperCase() == Status.DENIED.name())
+        else if (s == Status.DENIED)
         {
-
+            System.out.println("this.status = Status.DENIED;");
             this.status = Status.DENIED;
         }
         else {
-            this.status = Status.valueOf(status);
+            System.out.println("Cant read status");
+            this.status = Status.PENDING;
         }
 
 

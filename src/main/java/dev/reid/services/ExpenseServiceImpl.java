@@ -18,7 +18,8 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     @Override
     public Expense registerExpense(Expense expense) {
-        //System.out.println(expense);
+        System.out.println(expense);
+
         Expense exp = this.expenseDOA.createExpense(expense);
         return exp;
 
@@ -39,6 +40,8 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     @Override
     public Expense modifyExpense(Expense expense) {
+        System.out.println("ModifyExpense");
+        System.out.println(expense);
         return this.expenseDOA.updateExpenseStatus(expense.getId(), expense.getStatus().toString());
 
     }
