@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ExpenseServiceImpl implements ExpenseService{
 
-    private ExpenseDAO expenseDOA = new ExpenseDAOLocal();
+    private ExpenseDAO expenseDOA = new ExpenseDAOPostgres();
 
     public ExpenseServiceImpl(ExpenseDAOPostgres expenseDAOPostgres) {
 
@@ -40,7 +40,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     @Override
     public Expense modifyExpense(Expense expense) {
-        System.out.println("ModifyExpense");
+        //System.out.println("ModifyExpense");
         System.out.println(expense);
         return this.expenseDOA.updateExpenseStatus(expense.getId(), expense.getStatus().toString());
 

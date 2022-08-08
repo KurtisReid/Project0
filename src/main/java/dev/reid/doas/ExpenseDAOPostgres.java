@@ -31,7 +31,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
         {
             //int id, double expenseCost, Status status, int employeeIssuer, String desc
 
-            String sql = "Insert into expenses values (default, ?, ?, ?, ?, ?)";
+            String sql = "insert into expenses values (default, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -40,7 +40,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             preparedStatement.setString(2, expense.getDesc());
             preparedStatement.setString(3, expense.getType().toString());
             preparedStatement.setString(4, expense.getStatus().toString());
-            System.out.println(expense.getEmployeeIssuer());
+            //System.out.println(expense.getEmployeeIssuer());
             preparedStatement.setInt(5, expense.getEmployeeIssuer());
 
             preparedStatement.execute();

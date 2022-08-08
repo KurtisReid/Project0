@@ -10,7 +10,7 @@ public class GetAllExpensesHandler implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
         Gson gson = new Gson();
-        String json = gson.toJson(App.expenseService);
+        String json = gson.toJson(App.expenseService.returnAllExpenses());
         ctx.result(json);
     }
 }
