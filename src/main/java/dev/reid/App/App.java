@@ -34,7 +34,7 @@ Expenses routes
  */
 public class App {
 
-    public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOLocal());
+    public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOPostgres());
     public static ExpenseService expenseService = new ExpenseServiceImpl(new ExpenseDAOPostgres());
 
 

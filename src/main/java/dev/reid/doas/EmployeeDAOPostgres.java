@@ -75,6 +75,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
 
     @Override
     public List<Employee> getListOfEmployees() {
+        System.out.println("GetListOfEmployees");
         try (Connection conn = ConnectionUtil.createConnection())
         {
             String sql = "select * from employee";
@@ -95,6 +96,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
 
 
             }
+            System.out.println(employeeList);
             return employeeList;
         } catch (SQLException e) {
             e.printStackTrace();

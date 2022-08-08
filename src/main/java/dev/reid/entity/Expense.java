@@ -28,7 +28,9 @@ public class Expense {
         "id":1,
         "expenseCost":2.0,
         "status":"PENDING",
-        "employerIssue":1
+        "employerIssue":1,
+        "desc":"Gas",
+        "type":"TRAVEL"
     }*/
 
     public String getDesc() {

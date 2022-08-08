@@ -19,6 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee registerEmployee(Employee employee) {
+        System.out.println(employee);
         if (employee.getName().length() == 0)
         {
             throw new RuntimeException("i need a name");
